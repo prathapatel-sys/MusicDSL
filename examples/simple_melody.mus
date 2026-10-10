@@ -1,0 +1,10 @@
+tempo 120
+key C major
+time 4/4
+
+melody {
+    C4:q
+    D4:q
+    E4:q
+    G4:q
+}
