@@ -1,0 +1,10 @@
+﻿tempo 100
+key C major
+time 4/4
+
+melody {
+  C4:q E4:q G4:q E4:q
+  A4:q C5:q E5:q C5:q
+}
+
+chords { I - vi - IV - V } @
