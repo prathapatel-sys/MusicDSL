@@ -1,9 +1,10 @@
-﻿"""Command-line entry point: python main.py examples\hello.mdsl"""
+﻿"""Command-line entry point: python main.py examples/hello.mdsl"""
 
 import argparse
 import os
 import sys
 
+from backend.musicxml_generator import write_musicxml
 from compiler.compiler import compile_file
 from compiler.ir import format_ir
 from utils.errors import LexicalError, ParserError, SemanticError
@@ -15,12 +16,17 @@ def main() -> int:
     cli.add_argument("-o", "--output", help="path of the .mid file to write")
     cli.add_argument("--show-ir", action="store_true",
                      help="print the intermediate representation")
+    cli.add_argument("--xml", action="store_true",
+                     help="also write a MusicXML (sheet music) file")
     args = cli.parse_args()
 
-    output = args.output or os.path.splitext(args.source)[0] + ".mid"
+    base = os.path.splitext(args.source)[0]
+    output = args.output or base + ".mid"
 
     try:
         result = compile_file(args.source, output)
+        if args.xml:
+            write_musicxml(result.ir, base + ".musicxml")
     except FileNotFoundError:
         print(f"File not found: {args.source}")
         return 1
@@ -41,6 +47,8 @@ def main() -> int:
     print(f"Compiled {args.source} -> {output} "
           f"({len(result.ir.events)} events, "
           f"{result.ir.total_beats} beats)")
+    if args.xml:
+        print(f"Sheet music -> {base}.musicxml")
     return 0
 
 
