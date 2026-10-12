@@ -39,13 +39,13 @@ def main() -> int:
         print("Cannot write an output file. Close any player that has it open.")
         return 1
     except LexicalError as error:
-        print(f"Lexical Error: {error}")
+        print(error)
         return 1
     except ParserError as error:
-        print(f"Syntax Error: {error}")
+        print(error)
         return 1
     except SemanticError as error:
-        print(f"Semantic Error: {error}")
+        print(error)
         return 1
 
     for warning in result.warnings:
@@ -64,3 +64,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+

@@ -45,11 +45,11 @@ with right:
                 write_musicxml(result.ir, xml_path)
                 write_wav(result.ir, wav_path)
             except LexicalError as error:
-                st.error(f"Lexical Error: {error}")
+                st.error(str(error))
             except ParserError as error:
-                st.error(f"Syntax Error: {error}")
+                st.error(str(error))
             except SemanticError as error:
-                st.error(f"Semantic Error: {error}")
+                st.error(str(error))
             else:
                 st.success(f"Compiled: {len(result.ir.events)} events, "
                            f"{result.ir.total_beats} beats")
@@ -69,3 +69,4 @@ with right:
                     st.code(format_ir(result.ir))
     else:
         st.info("Write or load a program, then press Compile.")
+
