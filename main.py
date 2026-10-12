@@ -5,6 +5,7 @@ import os
 import sys
 
 from backend.musicxml_generator import write_musicxml
+from backend.wav_generator import write_wav
 from compiler.compiler import compile_file
 from compiler.ir import format_ir
 from utils.errors import LexicalError, ParserError, SemanticError
@@ -18,6 +19,8 @@ def main() -> int:
                      help="print the intermediate representation")
     cli.add_argument("--xml", action="store_true",
                      help="also write a MusicXML (sheet music) file")
+    cli.add_argument("--wav", action="store_true",
+                     help="also write a WAV (audio) file")
     args = cli.parse_args()
 
     base = os.path.splitext(args.source)[0]
@@ -27,8 +30,13 @@ def main() -> int:
         result = compile_file(args.source, output)
         if args.xml:
             write_musicxml(result.ir, base + ".musicxml")
+        if args.wav:
+            write_wav(result.ir, base + ".wav")
     except FileNotFoundError:
         print(f"File not found: {args.source}")
+        return 1
+    except PermissionError:
+        print("Cannot write an output file. Close any player that has it open.")
         return 1
     except LexicalError as error:
         print(f"Lexical Error: {error}")
@@ -49,6 +57,8 @@ def main() -> int:
           f"{result.ir.total_beats} beats)")
     if args.xml:
         print(f"Sheet music -> {base}.musicxml")
+    if args.wav:
+        print(f"Audio -> {base}.wav")
     return 0
 
 
