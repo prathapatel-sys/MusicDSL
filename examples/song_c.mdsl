@@ -1,0 +1,15 @@
+# Twinkle Twinkle Little Star
+tempo 100
+key C major
+time 4/4
+
+melody {
+  C4:q C4:q G4:q G4:q   A4:q A4:q G4:h
+  F4:q F4:q E4:q E4:q   D4:q D4:q C4:h
+  G4:q G4:q F4:q F4:q   E4:q E4:q D4:h
+  G4:q G4:q F4:q F4:q   E4:q E4:q D4:h
+  C4:q C4:q G4:q G4:q   A4:q A4:q G4:h
+  F4:q F4:q E4:q E4:q   D4:q D4:q C4:h
+}
+
+chords { I - IV - IV - I - I - V - I - V - I - IV - IV - I }

@@ -1,0 +1,13 @@
+# Happy Birthday to You
+tempo 100
+key C major
+time 3/4
+
+melody {
+  G4:e G4:e A4:q G4:q   C5:q B4:h
+  G4:e G4:e A4:q G4:q   D5:q C5:h
+  G5:e G5:e E5:q C5:q   B4:q A4:h
+  F5:e F5:e E5:q C5:q   D5:q C5:h
+}
+
+chords { I - V - V - I - I - V - IV - I }

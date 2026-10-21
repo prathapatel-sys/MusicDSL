@@ -1,0 +1,12 @@
+tempo 90
+key G major
+time 4/4
+
+melody {
+  G4:q B4:q D5:q B4:q
+  C5:q E5:q G5:h
+  A4:q C5:q E5:q C5:q
+  D5:h B4:h
+}
+
+chords { I - IV - ii - V }
